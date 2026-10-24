@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpassword
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./api
+    environment:
+      - DBHOST=db
+      - DBUSER=dbuser
+      - DBPASS=dbpassword
+      - DB=appdb
+      - DBPORT=5432
+      - PORT=8080
+      - HOST=0.0.0.0
+
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: ./web
+    environment:
+      # Maps to the internal Docker network name and port for the API service
+      - API_HOST=http://api:8080
+      - PORT=8080
+      - HOST=0.0.0.0
+
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+
+volumes:
+  db-data:
