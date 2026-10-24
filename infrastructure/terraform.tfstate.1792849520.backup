@@ -1,0 +1,357 @@
+{
+  "version": 4,
+  "terraform_version": "1.17.0",
+  "serial": 12,
+  "lineage": "ca3b5659-40cc-50e4-7b64-5d690de84bd9",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_compute_global_address",
+      "name": "private_ip",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "10.87.0.0",
+            "address_type": "INTERNAL",
+            "creation_timestamp": "2026-10-24T06:20:10.974-07:00",
+            "deletion_policy": "DELETE",
+            "description": "",
+            "effective_labels": {
+              "goog-terraform-provisioned": "true"
+            },
+            "id": "projects/potent-poetry-512603-c9/global/addresses/private-ip",
+            "ip_version": "",
+            "label_fingerprint": "vezUS-42LLM=",
+            "labels": {},
+            "name": "private-ip",
+            "network": "https://www.googleapis.com/compute/v1/projects/potent-poetry-512603-c9/global/networks/toptal-vpc",
+            "prefix_length": 16,
+            "project": "potent-poetry-512603-c9",
+            "purpose": "VPC_PEERING",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/potent-poetry-512603-c9/global/addresses/private-ip",
+            "terraform_labels": {
+              "goog-terraform-provisioned": "true"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "name": "private-ip",
+            "project": "potent-poetry-512603-c9"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_network.vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_compute_network",
+      "name": "vpc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "auto_create_subnetworks": false,
+            "bgp_always_compare_med": false,
+            "bgp_best_path_selection_mode": "LEGACY",
+            "bgp_inter_region_cost": "",
+            "delete_bgp_always_compare_med": false,
+            "delete_default_routes_on_create": false,
+            "deletion_policy": "DELETE",
+            "description": "",
+            "enable_ula_internal_ipv6": false,
+            "gateway_ipv4": "",
+            "id": "projects/potent-poetry-512603-c9/global/networks/toptal-vpc",
+            "internal_ipv6_range": "",
+            "mtu": 0,
+            "name": "toptal-vpc",
+            "network_firewall_policy_enforcement_order": "AFTER_CLASSIC_FIREWALL",
+            "network_id": "4468094205208628891",
+            "network_profile": "",
+            "numeric_id": "4468094205208628891",
+            "params": [],
+            "project": "potent-poetry-512603-c9",
+            "routing_mode": "REGIONAL",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/potent-poetry-512603-c9/global/networks/toptal-vpc",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "name": "toptal-vpc",
+            "project": "potent-poetry-512603-c9"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_networking_connection",
+      "name": "private_vpc_connection",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "deletion_policy": "DELETE",
+            "id": "projects%2Fpotent-poetry-512603-c9%2Fglobal%2Fnetworks%2Ftoptal-vpc:servicenetworking.googleapis.com",
+            "network": "projects/potent-poetry-512603-c9/global/networks/toptal-vpc",
+            "peering": "servicenetworking-googleapis-com",
+            "reserved_peering_ranges": [
+              "private-ip"
+            ],
+            "service": "servicenetworking.googleapis.com",
+            "timeouts": null,
+            "update_on_creation_fail": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_global_address.private_ip",
+            "google_compute_network.vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_sql_database_instance",
+      "name": "postgres",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "available_maintenance_versions": [],
+            "backupdr_backup": null,
+            "clone": [],
+            "connection_name": "potent-poetry-512603-c9:us-central1:toptal-db-instance",
+            "database_version": "POSTGRES_15",
+            "deletion_policy": "DELETE",
+            "deletion_protection": false,
+            "dns_name": "",
+            "dns_names": [],
+            "encryption_confidential_mode": null,
+            "encryption_key_name": null,
+            "enforce_new_sql_network_architecture": true,
+            "final_backup_description": null,
+            "first_ip_address": "10.87.0.3",
+            "id": "toptal-db-instance",
+            "include_replicas_for_major_version_upgrade": null,
+            "instance_type": "CLOUD_SQL_INSTANCE",
+            "ip_address": [
+              {
+                "ip_address": "10.87.0.3",
+                "time_to_retire": "",
+                "type": "PRIVATE"
+              }
+            ],
+            "maintenance_version": "POSTGRES_15_19.R20260712.01_44",
+            "master_instance_name": "",
+            "name": "toptal-db-instance",
+            "node_count": 0,
+            "point_in_time_restore_context": [],
+            "private_ip_address": "10.87.0.3",
+            "project": "potent-poetry-512603-c9",
+            "psc_service_attachment_link": "",
+            "public_ip_address": "",
+            "region": "us-central1",
+            "replica_configuration": [],
+            "replica_names": [],
+            "replication_cluster": [
+              {
+                "dr_replica": false,
+                "failover_dr_replica_name": "",
+                "psa_write_endpoint": ""
+              }
+            ],
+            "restore_backup_context": [],
+            "root_password": null,
+            "root_password_wo": null,
+            "root_password_wo_version": null,
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/potent-poetry-512603-c9/instances/toptal-db-instance",
+            "server_ca_cert": [
+              {
+                "cert": "-----BEGIN CERTIFICATE-----\nMIIDcTCCAlmgAwIBAgIBADANBgkqhkiG9w0BAQsFADBwMS0wKwYDVQQuEyRkYjll\nNjhiOS02Mzg0LTRhYzEtYmZjNC1iYWIxYmQxYzNhNmExHDAaBgNVBAMTE0Nsb3Vk\nIFNRTCBTZXJ2ZXIgQ0ExFDASBgNVBAoTC0dvb2dsZSwgSW5jMQswCQYDVQQGEwJV\nUzAeFw0yNjEwMjQxMzIzNDVaFw0zNjEwMjExMzI0NDVaMHAxLTArBgNVBC4TJGRi\nOWU2OGI5LTYzODQtNGFjMS1iZmM0LWJhYjFiZDFjM2E2YTEcMBoGA1UEAxMTQ2xv\ndWQgU1FMIFNlcnZlciBDQTEUMBIGA1UEChMLR29vZ2xlLCBJbmMxCzAJBgNVBAYT\nAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApu0fsNdZtb0lZboY\npciGbt9OLwa0V+AIlAy8opecQtwDayyP8ByTAumjNICwQ/2xihdhgYor03sMCcZg\ncTbKsHVhGD1RsGecDHyUYecmHFDkP8t89CChpI29CuyjEIDGtFxp0hkle3sKmjBE\nohZ0rNp8mXcFZLM0KpAjwJAdarTxa+vMwQdpbb5EEaF1e37eux2LSeZpQFq0deZM\n+zehXsCiAQkDOeB6zVl+H0Rp+ZALLTpGtif9AAX1K0vpTty3EFI3YZyDXlNFnGvv\nddk+dUa1McHTGA+eAbHZGNlW9BTEdhh4kHgswqamx9mnwV8nUDEaVWNt5E+J8rsp\n5so3hwIDAQABoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMA0GCSqGSIb3DQEBCwUA\nA4IBAQA11q47gGgr8IqtahIq5EYS4+8FgoJKW1S/XzmM8qCtCnofJ+moSfuvSJP/\nWvTbDzGq5CdNjAHKQ25Ac+0uDwZXaelDGQWlg+PTtSZqJ3B2LwipEp3LsKxUo7/U\nOwmVRpFZAMToONSXSGfzUWHZWXhOimJBjvyosq72jhlGwXppa7J6TrQsQoCtYex7\nXBbn0fmLa4IU+l4W12zLXhF/pkknCUJJh1X4uV4SWog0t8+wC7RP9pxcUQsc5lmU\nM5Mafvz/5B1VcEKlopbtG9b/QPaJUc9xdXtPUdBn9NIHj4PAnzhuE+asSphWXiQ9\nS9uuyYIZn/49jgPGbpiiYDS4w5Ee\n-----END CERTIFICATE-----",
+                "common_name": "C=US,O=Google\\, Inc,CN=Cloud SQL Server CA,dnQualifier=db9e68b9-6384-4ac1-bfc4-bab1bd1c3a6a",
+                "create_time": "2026-10-24T13:23:45.934Z",
+                "expiration_time": "2036-10-21T13:24:45.934Z",
+                "sha1_fingerprint": "1de49ec43f5096717fccbf327436804efd2166dc"
+              }
+            ],
+            "service_account_email_address": "p779516355204-si0cpz@gcp-sa-cloud-sql.iam.gserviceaccount.com",
+            "settings": [
+              {
+                "activation_policy": "ALWAYS",
+                "active_directory_config": [],
+                "advanced_machine_features": [],
+                "auto_upgrade_enabled": false,
+                "availability_type": "ZONAL",
+                "backup_configuration": [
+                  {
+                    "backup_retention_settings": [
+                      {
+                        "retained_backups": 7,
+                        "retention_unit": "COUNT"
+                      }
+                    ],
+                    "backup_tier": "STANDARD",
+                    "binary_log_enabled": false,
+                    "enabled": true,
+                    "location": "",
+                    "point_in_time_recovery_enabled": false,
+                    "start_time": "03:00",
+                    "transaction_log_retention_days": 7
+                  }
+                ],
+                "collation": "",
+                "connection_pool_config": [],
+                "connector_enforcement": "NOT_REQUIRED",
+                "data_api_access": "",
+                "data_cache_config": [
+                  {
+                    "data_cache_enabled": false
+                  }
+                ],
+                "data_disk_provisioned_iops": 0,
+                "data_disk_provisioned_throughput": 0,
+                "database_flags": [],
+                "deletion_protection_enabled": false,
+                "deny_maintenance_period": [],
+                "disk_autoresize": true,
+                "disk_autoresize_limit": 0,
+                "disk_size": 10,
+                "disk_type": "PD_SSD",
+                "edition": "ENTERPRISE",
+                "effective_availability_type": "ZONAL",
+                "enable_dataplex_integration": false,
+                "enable_google_ml_integration": false,
+                "entraid_config": [],
+                "final_backup_config": [],
+                "insights_config": [],
+                "ip_configuration": [
+                  {
+                    "allocated_ip_range": "",
+                    "authorized_networks": [],
+                    "custom_subject_alternative_names": [],
+                    "enable_private_path_for_google_cloud_services": false,
+                    "ipv4_enabled": false,
+                    "private_network": "projects/potent-poetry-512603-c9/global/networks/toptal-vpc",
+                    "psc_config": [],
+                    "server_ca_mode": "GOOGLE_MANAGED_INTERNAL_CA",
+                    "server_ca_pool": "",
+                    "server_certificate_rotation_mode": "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED",
+                    "ssl_mode": "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
+                  }
+                ],
+                "location_preference": [
+                  {
+                    "follow_gae_application": "",
+                    "secondary_zone": "",
+                    "zone": "us-central1-f"
+                  }
+                ],
+                "maintenance_window": [],
+                "password_validation_policy": [],
+                "pricing_plan": "PER_USE",
+                "read_pool_auto_scale_config": [
+                  {
+                    "disable_scale_in": false,
+                    "enabled": false,
+                    "max_node_count": 0,
+                    "min_node_count": 0,
+                    "scale_in_cooldown_seconds": 0,
+                    "scale_out_cooldown_seconds": 0,
+                    "target_metrics": []
+                  }
+                ],
+                "replication_lag_max_seconds": 31536000,
+                "retain_backups_on_delete": false,
+                "sql_server_audit_config": [],
+                "tier": "db-f1-micro",
+                "time_zone": "",
+                "user_labels": {},
+                "version": 1
+              }
+            ],
+            "switch_transaction_logs_to_cloud_storage_enabled": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "root_password"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "server_ca_cert"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInVwZGF0ZSI6NTQwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_global_address.private_ip",
+            "google_compute_network.vpc",
+            "google_service_networking_connection.private_vpc_connection"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_vpc_access_connector",
+      "name": "connector",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "connected_projects": [],
+            "deletion_policy": "DELETE",
+            "id": "projects/potent-poetry-512603-c9/locations/us-central1/connectors/toptal-connector",
+            "ip_cidr_range": "10.8.0.0/28",
+            "machine_type": "e2-micro",
+            "max_instances": 3,
+            "max_throughput": 0,
+            "min_instances": 2,
+            "min_throughput": 0,
+            "name": "toptal-connector",
+            "network": "toptal-vpc",
+            "project": "potent-poetry-512603-c9",
+            "region": "us-central1",
+            "self_link": "projects/potent-poetry-512603-c9/locations/us-central1/connectors/toptal-connector",
+            "state": "ERROR",
+            "subnet": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "name": "toptal-connector",
+            "project": "potent-poetry-512603-c9",
+            "region": "us-central1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_compute_network.vpc"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
