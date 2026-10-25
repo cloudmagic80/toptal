@@ -52,3 +52,10 @@ jobs:
           service: toptal-web
           region: ${{ env.REGION }}
           image: ${{ env.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO_NAME }}/web:${{ github.sha }}
+
+       - name: Mirror to GitLab
+        run: |
+          git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/toptal-url/your-repo.git
+          git push gitlab main --force   
+
+          
