@@ -12,7 +12,7 @@ resource "google_vpc_access_connector" "connector" {
 resource "google_cloud_run_v2_service" "api" {
   name     = "toptal-api"
   location = "us-central1"
-  ingress  = "INGRESS_TRAFFIC_ALL"
+  ingress  = "INGRESS_TRAFFIC_ALL" # Changed from INTERNAL_ONLY
 
   template {
     containers {
@@ -27,8 +27,13 @@ resource "google_cloud_run_v2_service" "api" {
         value = "dbuser" # Best practice: move to GCP Secret Manager later
       }
       env {
-        name  = "DBPASS"
-        value = "dbpassword"
+        name = "DBPASS"
+        value_source {
+          secret_key_ref {
+            secret  = google_secret_manager_secret.db_pass_secret.secret_id
+            version = "latest"
+          }
+        }
       }
       env {
         name  = "DB"
@@ -69,6 +74,15 @@ resource "google_cloud_run_service_iam_member" "web_public" {
   location = google_cloud_run_v2_service.web.location
   project  = google_cloud_run_v2_service.web.project
   service  = google_cloud_run_v2_service.web.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
+# Allow public internet access to the API tier
+resource "google_cloud_run_service_iam_member" "api_public" {
+  location = google_cloud_run_v2_service.api.location
+  project  = google_cloud_run_v2_service.api.project
+  service  = google_cloud_run_v2_service.api.name
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
