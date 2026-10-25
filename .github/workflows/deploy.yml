@@ -55,7 +55,7 @@ jobs:
 
       - name: Mirror to GitLab
         run: |
-          git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@git.toptal.com/Don-shin/node-3tier-app2.git
+          git remote add gitlab https://Don-shin:${{ secrets.GITLAB_TOKEN }}@git.toptal.com/Don-shin/node-3tier-app2.git
           git push gitlab main --force
 
           
